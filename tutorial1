@@ -1,0 +1,41 @@
+// OpenCVtutorial.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "opencv2\opencv.hpp"
+
+
+int main(int argc, char* args[])
+{
+	cv::Mat image;
+
+	cv::VideoCapture camera;
+
+	cv::namedWindow("HelloWorld!", cv::WINDOW_AUTOSIZE);
+
+	camera.open(0);
+
+	while (1) {
+		camera >> image;
+
+		if (!image.empty()) {
+			cv::imshow("HelloWorld!", image);
+
+		}
+
+		char c = (char)cv::waitKey(10);
+
+		if (c == 'q') {
+			break;
+		}
+
+	}
+
+
+	cv::destroyAllWindows();
+
+	camera.release();
+
+    return 0;
+}
+
